@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+</head>
+
+<body class="body">
+
+  <div class="page">
+
+    <header class="header">
+      <img class="header__logo" src="./vendor/images/header_logo.svg" alt="логотип Mesto">
+    </header>
+
+    <main class="content">
+
+      <section class="profile">
+        <img class="profile__avatar" src="./vendor/images/avatar_image.jpg" alt="фото профиля">
+        <div class="profile__info">
+          <h2 class="profile__name">Алекс Сатори</h2>
+          <p class="profile__bio">Искатель приключений</p>
+          <button class="profile__edit-button hover-opacity"></button>
+        </div>
+        <div class="profile__add-button hover-opacity"></div>
+
+      </section>
+
+      <section class="gallery">
+
+        <ul class="photo-grid">
+          <li><div class="photo-grid__item">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-machupikchu_dron.jpg" alt="фото">
+            <div class="photo-grid__pic-info">
+              <h2 class="photo-grid__pic-title">Мачу Пикчу с дрона</h2>
+              <button class="photo-grid__like-button photo-grid__like-button_active"></button>
+            </div>
+          </div></li>
+          <li><div class="photo-grid__item">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-taiwan_walks.jpg" alt="фото">
+            <div class="photo-grid__pic-info">
+              <h2 class="photo-grid__pic-title">Прогулки в Тайване</h2>
+              <button class="photo-grid__like-button"></button>
+            </div>
+          </div></li>
+          <li><div class="photo-grid__item">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-usa_drive.jpg" alt="фото">
+            <div class="photo-grid__pic-info">
+              <h2 class="photo-grid__pic-title">Прерии США</h2>
+              <button class="photo-grid__like-button"></button>
+            </div>
+          </div></li>
+          <li><div class="photo-grid__item">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-sahara_dron.jpg" alt="фото">
+            <div class="photo-grid__pic-info">
+              <h2 class="photo-grid__pic-title">Сахара с дрона</h2>
+              <button class="photo-grid__like-button"></button>
+            </div>
+          </div></li>
+          <li><div class="photo-grid__item">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-osaka_walks.jpg" alt="фото">
+            <div class="photo-grid__pic-info">
+              <h2 class="photo-grid__pic-title">Осака чилл</h2>
+              <button class="photo-grid__like-button"></button>
+            </div>
+          </div></li>
+          <li><div class="photo-grid__item">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-uk_subway.jpg" alt="фото">
+            <div class="photo-grid__pic-info">
+              <h2 class="photo-grid__pic-title">Метро в UK</h2>
+              <button class="photo-grid__like-button"></button>
+            </div>
+          </div></li>
+        </ul>
+
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2020 Mesto Russia</p>
+    </footer>
+
+    <div class="popup popup_type_edit-profile">
+      <div class="popup__container">
+        <button class="popup__close-button hover-opacity"></button>
+        <form class="form form_type_edit-profile">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <fieldset class="form__input-container">
+            <input class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Имя" minlength="2" maxlength="30" required>
+            <input class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="О себе" minlength="2" maxlength="200"required>
+          </fieldset>
+          <button class="form__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/script.js"></script>
+
+</body>
+
+</html>

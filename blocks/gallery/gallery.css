@@ -1,0 +1,22 @@
+/* стили от 1280 - для стандартных ноутбуков и до бесконечности */
+.gallery {
+  width: 100%;
+  min-width: 382px;
+  max-width: 880px;
+  margin-top: 51px;
+}
+
+/* стили от 1024 и до 1279 пикселей — от вертикального до горизонтального положения планшета */
+@media screen and (max-width: 1279px) {
+  .gallery {
+    margin-left: 160px;
+    margin-right: 160px;
+  }
+}
+
+/* стили от 320 и до 1023 пикселей — от большого смартфона до вертикального положения планшета */
+@media screen and (max-width: 1023px) {
+  .gallery {
+    margin: 36px 19px 0 19px;
+  }
+}
