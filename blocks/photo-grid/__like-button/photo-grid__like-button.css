@@ -4,8 +4,9 @@
   width: 22px;
   height: 19px;
   border: none;
+  outline: 0;
   background-color: transparent;
-  background-image: url(/vendor/images/heart-icon-empty.svg);
+  background-image: url(../../../vendor/images/heart-icon-empty.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

@@ -1,5 +1,5 @@
 .profile__bio {
-  margin:0;
+  margin: 3px 0 0;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -13,7 +13,7 @@
 /* стили от 320 и до 768 пикселей — от большого смартфона до вертикального положения планшета */
 @media screen and (max-width: 768px) {
   .profile__bio {
-    margin-top: 14px;
+    margin-top: 4px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;

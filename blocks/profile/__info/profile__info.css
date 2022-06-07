@@ -1,6 +1,5 @@
 .profile__info {
   max-width: 336px;
-  height: 73px;
   grid-area: profile;
   align-self: center;
 
@@ -17,7 +16,6 @@
 @media screen and (max-width: 768px) {
   .profile__info {
     margin-top: 26px;
-    height: 54px;
   }
 }
 

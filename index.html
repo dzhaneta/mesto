@@ -21,11 +21,11 @@
       <section class="profile">
         <img class="profile__avatar" src="./vendor/images/avatar_image.jpg" alt="фото профиля">
         <div class="profile__info">
-          <h2 class="profile__name">Алекс Сатори</h2>
+          <h1 class="profile__name">Алекс Сатори</h1>
           <p class="profile__bio">Искатель приключений</p>
-          <button class="profile__edit-button hover-opacity"></button>
+          <button class="profile__edit-button hover-opacity" type="button"></button>
         </div>
-        <div class="profile__add-button hover-opacity"></div>
+        <button class="profile__add-button hover-opacity" type="button"></button>
 
       </section>
 
@@ -33,45 +33,45 @@
 
         <ul class="photo-grid">
           <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./vendor/images/photo-grid-machupikchu_dron.jpg" alt="фото">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-machupikchu_dron.jpg" alt="Мачу-Пикчу с высоты птичьего полета.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Мачу Пикчу с дрона</h2>
-              <button class="photo-grid__like-button photo-grid__like-button_active"></button>
+              <button class="photo-grid__like-button photo-grid__like-button_active" type="button" aria-label="Нравится"></button>
             </div>
           </div></li>
           <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./vendor/images/photo-grid-taiwan_walks.jpg" alt="фото">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-taiwan_walks.jpg" alt="Спуск по деревянной лестнице к морскому берегу в Тайвани.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Прогулки в Тайване</h2>
-              <button class="photo-grid__like-button"></button>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </div></li>
           <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./vendor/images/photo-grid-usa_drive.jpg" alt="фото">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-usa_drive.jpg" alt="Желтый дорожный знак на фоне трассы посреди прерий США.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Прерии США</h2>
-              <button class="photo-grid__like-button"></button>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </div></li>
           <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./vendor/images/photo-grid-sahara_dron.jpg" alt="фото">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-sahara_dron.jpg" alt="Человек, оставляющий за собой следы на дюне в Сахаре.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Сахара с дрона</h2>
-              <button class="photo-grid__like-button"></button>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </div></li>
           <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./vendor/images/photo-grid-osaka_walks.jpg" alt="фото">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-osaka_walks.jpg" alt="Вид на чертово колесо в Осаке из одного из переулков.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Осака чилл</h2>
-              <button class="photo-grid__like-button"></button>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </div></li>
           <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./vendor/images/photo-grid-uk_subway.jpg" alt="фото">
+            <img class="photo-grid__pic" src="./vendor/images/photo-grid-uk_subway.jpg" alt="Симметричное фото перрона станции метро в Великобритании.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Метро в UK</h2>
-              <button class="photo-grid__like-button"></button>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </div></li>
         </ul>
@@ -86,12 +86,12 @@
 
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <button class="popup__close-button hover-opacity"></button>
-        <form class="form form_type_edit-profile">
+        <button class="popup__close-button hover-opacity" type="button"></button>
+        <form class="form form_type_edit-profile" name="edit-profile-form">
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__input-container">
-            <input class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Имя" minlength="2" maxlength="30" required>
-            <input class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="О себе" minlength="2" maxlength="200" required>
+            <input class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Имя" required>
+            <input class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="О себе" required>
           </fieldset>
           <button class="form__save-button" type="submit">Сохранить</button>
         </form>
@@ -101,7 +101,7 @@
 
   </div>
 
-  <script src="/script.js"></script>
+  <script src="./scripts/script.js"></script>
 
 </body>
 
