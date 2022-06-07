@@ -3,18 +3,20 @@ let profileAbout = document.querySelector('.profile__bio');
 
 let editProfilePopup = document.querySelector('.popup_type_edit-profile');
 let editProfileButton = document.querySelector('.profile__edit-button');
-let closeProfileButton = editProfilePopup.querySelector('.popup__close-button');
+let closePopupButton = editProfilePopup.querySelector('.popup__close-button');
 
 let formElement = document.querySelector('.form_type_edit-profile');
 let nameInput = document.querySelector('.form__input_type_username');
 let jobInput = document.querySelector('.form__input_type_userabout');
 
-function openPopup() {
-  editProfilePopup.classList.add('popup_opened');
+function togglePopup() {
+  editProfilePopup.classList.toggle('popup_opened');
 }
 
-function closePopup() {
-  editProfilePopup.classList.remove('popup_opened');
+function FetchAndOpenProfile() {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileAbout.textContent;
+  togglePopup();
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -29,18 +31,14 @@ function formSubmitHandler (evt) {
   // Вставьте новые значения с помощью textContent
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
-  closePopup();
+  togglePopup();
 }
 
 
-editProfileButton.addEventListener('click', function() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileAbout.textContent;
-  openPopup();
-});
+editProfileButton.addEventListener('click', FetchAndOpenProfile);
 
 
-closeProfileButton.addEventListener('click', closePopup);
+closePopupButton.addEventListener('click', togglePopup);
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
