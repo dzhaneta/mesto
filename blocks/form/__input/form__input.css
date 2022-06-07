@@ -1,5 +1,5 @@
 .form__input {
-  padding: 9px 0;
+  padding: 0 0 13px;
   width: 100%;
   background-color: transparent;
   border: 0;
@@ -9,4 +9,8 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
+}
+
+.form__input:last-of-type {
+  margin-top: 30px;
 }
