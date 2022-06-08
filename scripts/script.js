@@ -13,7 +13,7 @@ function togglePopup() {
   editProfilePopup.classList.toggle('popup_opened');
 }
 
-function FetchAndOpenProfile() {
+function fetchAndOpenProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileAbout.textContent;
   togglePopup();
@@ -35,7 +35,7 @@ function formSubmitHandler (evt) {
 }
 
 
-editProfileButton.addEventListener('click', FetchAndOpenProfile);
+editProfileButton.addEventListener('click', fetchAndOpenProfile);
 
 
 closePopupButton.addEventListener('click', togglePopup);
