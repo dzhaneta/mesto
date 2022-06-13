@@ -36,7 +36,7 @@
             <img class="photo-grid__pic" src="./images/photo-grid-machupikchu_dron.jpg" alt="Мачу-Пикчу с высоты птичьего полета.">
             <div class="photo-grid__pic-info">
               <h2 class="photo-grid__pic-title">Мачу Пикчу с дрона</h2>
-              <button class="photo-grid__like-button photo-grid__like-button_active" type="button" aria-label="Нравится"></button>
+              <button class="photo-grid__like-button" type="button" aria-label="Нравится"></button>
             </div>
           </div></li>
           <li><div class="photo-grid__item">
@@ -96,8 +96,21 @@
           <button class="form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
-
     </div>
+
+    <div class="popup popup_type_add-card">
+      <div class="popup__container">
+        <button class="popup__close-button hover-opacity" type="button"></button>
+        <form class="form form_type_add-card" name="add-card-form">
+          <h2 class="form__title">Новое место</h2>
+          <fieldset class="form__input-container">
+            <input class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Название" required>
+            <input class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="Ссылка на картинку" required>
+          </fieldset>
+          <button class="form__save-button" type="submit">Создать</button>
+        </form>
+      </div>
+
 
   </div>
 
