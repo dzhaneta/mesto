@@ -32,48 +32,6 @@
       <section class="gallery">
 
         <ul class="photo-grid">
-          <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./images/photo-grid-machupikchu_dron.jpg" alt="Мачу-Пикчу с высоты птичьего полета.">
-            <div class="photo-grid__pic-info">
-              <h2 class="photo-grid__pic-title">Мачу Пикчу с дрона</h2>
-              <button class="photo-grid__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-          </div></li>
-          <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./images/photo-grid-taiwan_walks.jpg" alt="Спуск по деревянной лестнице к морскому берегу в Тайвани.">
-            <div class="photo-grid__pic-info">
-              <h2 class="photo-grid__pic-title">Прогулки в Тайване</h2>
-              <button class="photo-grid__like-button" type="button"></button>
-            </div>
-          </div></li>
-          <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./images/photo-grid-usa_drive.jpg" alt="Желтый дорожный знак на фоне трассы посреди прерий США.">
-            <div class="photo-grid__pic-info">
-              <h2 class="photo-grid__pic-title">Прерии США</h2>
-              <button class="photo-grid__like-button" type="button"></button>
-            </div>
-          </div></li>
-          <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./images/photo-grid-sahara_dron.jpg" alt="Человек, оставляющий за собой следы на дюне в Сахаре.">
-            <div class="photo-grid__pic-info">
-              <h2 class="photo-grid__pic-title">Сахара с дрона</h2>
-              <button class="photo-grid__like-button" type="button"></button>
-            </div>
-          </div></li>
-          <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./images/photo-grid-osaka_walks.jpg" alt="Вид на чертово колесо в Осаке из одного из переулков.">
-            <div class="photo-grid__pic-info">
-              <h2 class="photo-grid__pic-title">Осака чилл</h2>
-              <button class="photo-grid__like-button" type="button"></button>
-            </div>
-          </div></li>
-          <li><div class="photo-grid__item">
-            <img class="photo-grid__pic" src="./images/photo-grid-uk_subway.jpg" alt="Симметричное фото перрона станции метро в Великобритании.">
-            <div class="photo-grid__pic-info">
-              <h2 class="photo-grid__pic-title">Метро в UK</h2>
-              <button class="photo-grid__like-button" type="button"></button>
-            </div>
-          </div></li>
         </ul>
 
       </section>
@@ -110,7 +68,20 @@
           <button class="form__save-button" type="submit">Создать</button>
         </form>
       </div>
+    </div>
 
+    <template id="card">
+      <li class="card">
+        <div class="photo-grid__item">
+          <button class="photo-grid__delete-button hover-opacity" type="button" aria-label="Удалить"></button>
+          <img class="photo-grid__pic" src="" alt="">
+          <div class="photo-grid__pic-info">
+            <h2 class="photo-grid__pic-title"></h2>
+            <button class="photo-grid__like-button" type="button" aria-label="Нравится"></button>
+          </div>
+       </div>
+      </li>
+    </template>
 
   </div>
 

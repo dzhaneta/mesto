@@ -6,6 +6,7 @@
   border-radius: 10px;
   width: 282px;
   height: 361px;
+  position: relative;
 
   display: grid;
   grid-template-columns: 1fr;
