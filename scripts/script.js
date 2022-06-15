@@ -35,15 +35,20 @@ let editProfilePopup = document.querySelector('.popup_type_edit-profile');
 let editProfileButton = document.querySelector('.profile__edit-button');
 let closeEditProfilePopupButton = editProfilePopup.querySelector('.popup__close-button');
 
+let editProfileForm = document.querySelector('.form_type_edit-profile');
+let nameInput = document.querySelector('.form__input_type_username');
+let jobInput = document.querySelector('.form__input_type_userabout');
+
 let addCardPopup = document.querySelector('.popup_type_add-card');
 let addCardButton = document.querySelector('.profile__add-button');
 let closeAddCardPopupButton = addCardPopup.querySelector('.popup__close-button');
 
-let formElement = document.querySelector('.form_type_edit-profile');
-let nameInput = document.querySelector('.form__input_type_username');
-let jobInput = document.querySelector('.form__input_type_userabout');
+let addCardForm = document.querySelector('.form_type_add-card');
+let cardTitleInput = document.querySelector('.form__input_type_cardtitle');
+let cardLinkInput = document.querySelector('.form__input_type_cardlink');
 
-let likePhotoButton = document.querySelectorAll('.photo-grid__like-button');
+let viewPhotoPopup = document.querySelector('.popup_type_view-photo');
+let closeViewPhotoPopup = viewPhotoPopup.querySelector('.popup__close-button');
 
 
 // ФУНКЦИИ
@@ -62,12 +67,33 @@ function fetchAndOpenProfile() {
   openPopup(editProfilePopup);
 }
 
-// Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
-function formSubmitHandler (evt) {
+function openViewPhotoPopup(targetCard) {
+  viewPhotoPopup.querySelector('.popup__photo-pic').src = targetCard.link;
+  viewPhotoPopup.querySelector('.popup__photo-pic').alt = targetCard.name;
+  viewPhotoPopup.querySelector('.popup__photo-caption').textContent = targetCard.name;
+  openPopup(viewPhotoPopup);
+}
+
+// Обработчик «отправки» формы редактирования профиля
+function profileFormSubmitHandler (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
   closePopup(editProfilePopup);
+}
+
+// Обработчик «отправки» формы добавления карточки
+function addCardFormSubmitHandler (evt) {
+  evt.preventDefault();
+
+  let addCardInput = [];
+
+  addCardInput.name = cardTitleInput.value;
+  addCardInput.link = cardLinkInput.value;
+
+  addCard(addCardInput);
+
+  closePopup(addCardPopup);
 }
 
 function addCard(inputInfo) {
@@ -81,6 +107,23 @@ function addCard(inputInfo) {
   newCard.querySelector('.photo-grid__pic').src = inputInfo.link;
   newCard.querySelector('.photo-grid__pic').alt = inputInfo.name;
   newCard.querySelector('.photo-grid__pic-title').textContent = inputInfo.name;
+  const likeCardButton = newCard.querySelector('.photo-grid__like-button');
+  const deleteCardButton = newCard.querySelector('.photo-grid__delete-button');
+  const viewPhotoButton = newCard.querySelector('.photo-grid__pic');
+
+
+  likeCardButton.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('photo-grid__like-button_active')
+  });
+
+  deleteCardButton.addEventListener('click', () => {
+    newCard.remove();
+  })
+
+  viewPhotoButton.addEventListener('click', () => {
+    openViewPhotoPopup(newCard);
+  })
+
 
   // отображаем на странице
   cardsGallery.prepend(newCard);
@@ -98,24 +141,17 @@ initialCards.forEach((initialCards) => {
 
 editProfileButton.addEventListener('click', () => {fetchAndOpenProfile()});
 closeEditProfilePopupButton.addEventListener('click', () => {closePopup(editProfilePopup)});
-formElement.addEventListener('submit', formSubmitHandler);
+editProfileForm.addEventListener('submit', profileFormSubmitHandler);
 
 addCardButton.addEventListener('click', () => {openPopup(addCardPopup)});
 closeAddCardPopupButton.addEventListener('click', () => {closePopup(addCardPopup)});
+addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 
-
-
-likePhotoButton.forEach(likePhotoButton => {
-    likePhotoButton.addEventListener('click', function(evt) {
-      likePhotoButton.classList.toggle('photo-grid__like-button_active')
-    })
-  }
-);
+closeViewPhotoPopup.addEventListener('click', () => {closePopup(viewPhotoPopup)});
 
 
 
 
 
 
-console.log(likePhotoButton);
 

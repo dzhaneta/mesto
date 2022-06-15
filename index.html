@@ -30,10 +30,8 @@
       </section>
 
       <section class="gallery">
-
         <ul class="photo-grid">
         </ul>
-
       </section>
 
     </main>
@@ -62,11 +60,21 @@
         <form class="form form_type_add-card" name="add-card-form">
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__input-container">
-            <input class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Название" required>
-            <input class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="Ссылка на картинку" required>
+            <input class="form__input form__input_type_cardtitle" type="text" name="card-title" value placeholder="Название" required>
+            <input class="form__input form__input_type_cardlink" type="text" name="card-link" value placeholder="Ссылка на картинку" required>
           </fieldset>
           <button class="form__save-button" type="submit">Создать</button>
         </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_view-photo">
+      <div class="popup__photo-container">
+        <button class="popup__close-button hover-opacity" type="button"></button>
+        <div class="popup__photo">
+          <img class="popup__photo-pic" src="" alt="">
+          <figcaption class="popup__photo-caption"></figcaption>
+        </div>
       </div>
     </div>
 
