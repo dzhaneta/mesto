@@ -6,6 +6,6 @@
   grid-area: pic;
 }
 
-.photo-grid__pic {
+.photo-grid__pic:hover {
   cursor: pointer;
 }
