@@ -5,3 +5,7 @@
   object-fit:cover;
   grid-area: pic;
 }
+
+.photo-grid__pic {
+  cursor: pointer;
+}
