@@ -86,10 +86,10 @@ function profileFormSubmitHandler (evt) {
 function addCardFormSubmitHandler (evt) {
   evt.preventDefault();
 
-  let addCardInput = [];
-
-  addCardInput.name = cardTitleInput.value;
-  addCardInput.link = cardLinkInput.value;
+  const addCardInput = {
+    name: cardTitleInput.value,
+    link: cardLinkInput.value,
+  };
 
   addCard(addCardInput);
 
@@ -121,7 +121,7 @@ function addCard(inputInfo) {
   })
 
   viewPhotoButton.addEventListener('click', () => {
-    openViewPhotoPopup(newCard);
+    openViewPhotoPopup(inputInfo);
   })
 
 
