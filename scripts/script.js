@@ -88,6 +88,7 @@ function addCardFormSubmitHandler (evt) {
 
   closePopup(addCardPopup);
   addCardForm.reset();
+  reValidation(addCardForm);
 }
 
 function addCard(inputInfo) {

@@ -44,6 +44,7 @@ const hasInvalidInput = (inputList) => {
 // SUBMIT BUTTON AVAILABILITY
 
 const toggleButtonState = (inputList, buttonElement) => {
+
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(formSettings.inactiveButtonClass);
     buttonElement.setAttribute("disabled", true);
@@ -69,7 +70,7 @@ const setEventListeners = (formElement) => {
   });
 };
 
-const enableValidation = () => {
+const enableValidation = (formSettings) => {
   const formList = Array.from(document.querySelectorAll(formSettings.formSelector));
   formList.forEach((formElement) => {
     setEventListeners(formElement);
@@ -79,3 +80,12 @@ const enableValidation = () => {
 // FORM VALIDATION LAUNCH
 
 enableValidation(formSettings);
+
+// REVALIDATION FOR REOPENED FORMS
+
+const reValidation = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(formSettings.inputSelector));
+  const buttonElement = formElement.querySelector(formSettings.submitButtonSelector);
+
+  toggleButtonState(inputList, buttonElement);
+};

@@ -46,10 +46,14 @@
         <form class="form form_type_edit-profile" name="edit-profile-form" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__input-container">
-            <input id="username" class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Имя" minlength="2" maxlength="40" required>
-            <span class="form__input-error username-error"></span>
-            <input id="userabout" class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="О себе" minlength="2" maxlength="200" required>
-            <span class="form__input-error userabout-error"></span>
+            <label class="form__field">
+              <input id="username" class="form__input form__input_type_username" type="text" name="user-name" value placeholder="Имя" minlength="2" maxlength="40" required>
+              <span class="form__input-error username-error"></span>
+            </label>
+            <label class="form__field">
+              <input id="userabout" class="form__input form__input_type_userabout" type="text" name="user-about" value placeholder="О себе" minlength="2" maxlength="200" required>
+              <span class="form__input-error userabout-error"></span>
+            </label>
           </fieldset>
           <button class="form__save-button" type="submit">Сохранить</button>
         </form>
@@ -62,10 +66,14 @@
         <form class="form form_type_add-card" name="add-card-form" novalidate>
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__input-container">
-            <input id="cardtitle" class="form__input form__input_type_cardtitle" type="text" name="card-title" value placeholder="Название" minlength="2" maxlength="30" required>
-            <span class="form__input-error cardtitle-error"></span>
-            <input id="cardlink" class="form__input form__input_type_cardlink" type="url" name="card-link" value placeholder="Ссылка на картинку" required>
-            <span class="form__input-error cardlink-error"></span>
+            <label class="form__field">
+              <input id="cardtitle" class="form__input form__input_type_cardtitle" type="text" name="card-title" value placeholder="Название" minlength="2" maxlength="30" required>
+              <span class="form__input-error cardtitle-error"></span>
+            </label>
+            <label class="form__field">
+              <input id="cardlink" class="form__input form__input_type_cardlink" type="url" name="card-link" value placeholder="Ссылка на картинку" required>
+              <span class="form__input-error cardlink-error"></span>
+            </label>
           </fieldset>
           <button class="form__save-button" type="submit">Создать</button>
         </form>
