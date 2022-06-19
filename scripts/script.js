@@ -28,13 +28,31 @@ const closeViewPhotoPopup = viewPhotoPopup.querySelector('.popup__close-button')
 
 // ФУНКЦИИ
 
+function closePopupByEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+function closePopupByOverlay(evt) {
+  if (evt.target == evt.currentTarget) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+
+}
+
 function openPopup(targetPopup) {
   targetPopup.classList.add('popup_opened');
+  document.addEventListener("keydown", closePopupByEsc);
+  targetPopup.addEventListener("mousedown", closePopupByOverlay);
 }
 
 function closePopup(targetPopup) {
   targetPopup.classList.remove('popup_opened');
+  document.removeEventListener("keydown", closePopupByEsc);
+  targetPopup.removeEventListener("mousedown", closePopupByOverlay);
 }
+
 
 function fetchAndOpenProfile() {
   nameInput.value = profileName.textContent;
