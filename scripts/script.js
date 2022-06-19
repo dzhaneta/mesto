@@ -97,12 +97,14 @@ function addCard(inputInfo) {
   const newCard = cardTemplate.querySelector('.card').cloneNode(true);
 
   // наполняем заготовку содержимым
-  newCard.querySelector('.photo-grid__pic').src = inputInfo.link;
-  newCard.querySelector('.photo-grid__pic').alt = inputInfo.name;
+  const newCardPic = newCard.querySelector('.photo-grid__pic');
+
+  newCardPic.src = inputInfo.link;
+  newCardPic.alt = inputInfo.name;
   newCard.querySelector('.photo-grid__pic-title').textContent = inputInfo.name;
   const likeCardButton = newCard.querySelector('.photo-grid__like-button');
   const deleteCardButton = newCard.querySelector('.photo-grid__delete-button');
-  const viewPhotoButton = newCard.querySelector('.photo-grid__pic');
+  const viewPhotoButton = newCardPic;
 
 
   likeCardButton.addEventListener('click', (evt) => {
