@@ -1,4 +1,35 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 // ПЕРЕМЕННЫЕ
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 
 const cardsGallery = document.querySelector('.photo-grid');
 
@@ -24,6 +55,23 @@ const cardTemplate = document.querySelector('#card').content;
 
 const viewPhotoPopup = document.querySelector('.popup_type_view-photo');
 const closeViewPhotoPopup = viewPhotoPopup.querySelector('.popup__close-button');
+
+const formSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  inactiveButtonClass: 'form__save-button_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error_visible'
+};
+
+// ВАЛИДАЦИЯ ФОРМ
+
+const formList = Array.from(document.querySelectorAll(formSettings.formSelector));
+formList.forEach((form) => {
+  const validatedForm = new FormValidator(formSettings,form);
+  validatedForm.enableValidation();
+});
 
 
 // ФУНКЦИИ
@@ -60,13 +108,6 @@ function fetchAndOpenProfile() {
   openPopup(editProfilePopup);
 }
 
-function openViewPhotoPopup(targetCard) {
-  viewPhotoPopup.querySelector('.popup__photo-pic').src = targetCard.link;
-  viewPhotoPopup.querySelector('.popup__photo-pic').alt = targetCard.name;
-  viewPhotoPopup.querySelector('.popup__photo-caption').textContent = targetCard.name;
-  openPopup(viewPhotoPopup);
-}
-
 // Обработчик «отправки» формы редактирования профиля
 function profileFormSubmitHandler (evt) {
   evt.preventDefault();
@@ -88,49 +129,21 @@ function addCardFormSubmitHandler (evt) {
 
   closePopup(addCardPopup);
   addCardForm.reset();
-  reValidation(addCardForm);
+  addCardForm.enableValidation();
 }
 
-function addCard(inputInfo) {
-
-  // клонируем содержимое тега template в заготовку новой карточки
-  const newCard = cardTemplate.querySelector('.card').cloneNode(true);
-
-  // наполняем заготовку содержимым
-  const newCardPic = newCard.querySelector('.photo-grid__pic');
-
-  newCardPic.src = inputInfo.link;
-  newCardPic.alt = inputInfo.name;
-  newCard.querySelector('.photo-grid__pic-title').textContent = inputInfo.name;
-  const likeCardButton = newCard.querySelector('.photo-grid__like-button');
-  const deleteCardButton = newCard.querySelector('.photo-grid__delete-button');
-  const viewPhotoButton = newCardPic;
-
-
-  likeCardButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('photo-grid__like-button_active')
-  });
-
-  deleteCardButton.addEventListener('click', () => {
-    newCard.remove();
-  })
-
-  viewPhotoButton.addEventListener('click', () => {
-    openViewPhotoPopup(inputInfo);
-  })
-
-  return newCard;
-
-}
-
+// Функция создания новой карточки
 function renderCard(inputInfo) {
-  cardsGallery.prepend(addCard(inputInfo));
+  const card = new Card(inputInfo, '#card');
+  const cardElement = card.generateCard();
+
+  cardsGallery.prepend(cardElement);
 }
 
 //рендерим галерею при загрузке
 initialCards.forEach((initialCards) => {
   renderCard(initialCards);
-}
+  }
 );
 
 
@@ -148,7 +161,7 @@ addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 closeViewPhotoPopup.addEventListener('click', () => {closePopup(viewPhotoPopup)});
 
 
-
+export { viewPhotoPopup, openPopup };
 
 
 
