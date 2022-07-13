@@ -1,4 +1,4 @@
-import { popupViewPhoto, openPopup } from './index.js';
+import { popupViewPhoto, openPopup } from './popups.js';
 
 
 export class Card {
@@ -63,5 +63,4 @@ export class Card {
     popupViewPhoto.querySelector('.popup__photo-caption').textContent = this._text;
     openPopup(popupViewPhoto);
   }
-
 }
