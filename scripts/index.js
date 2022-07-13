@@ -66,11 +66,11 @@ const formSettings = {
 };
 
 // ВАЛИДАЦИЯ ФОРМ
-
+const formValidators = {};
 const formList = Array.from(document.querySelectorAll(formSettings.formSelector));
 formList.forEach((form) => {
-  const validatedForm = new FormValidator(formSettings,form);
-  validatedForm.enableValidation();
+  formValidators[form.name] = new FormValidator(formSettings,form);
+  formValidators[form.name].enableValidation();
 });
 
 
@@ -114,6 +114,7 @@ function profileFormSubmitHandler (evt) {
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
   closePopup(editProfilePopup);
+  formValidators['edit-profile-form'].enableValidation();
 }
 
 // Обработчик «отправки» формы добавления карточки
@@ -129,7 +130,7 @@ function addCardFormSubmitHandler (evt) {
 
   closePopup(addCardPopup);
   addCardForm.reset();
-  addCardForm.enableValidation();
+  formValidators['add-card-form'].enableValidation();
 }
 
 // Функция создания новой карточки
