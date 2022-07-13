@@ -1,4 +1,4 @@
-import { viewPhotoPopup, openPopup } from './index.js';
+import { popupViewPhoto, openPopup } from './index.js';
 
 
 export class Card {
@@ -33,28 +33,35 @@ export class Card {
   }
 
   _setEventListeners() {
-    const likeCardButton = this._element.querySelector('.photo-grid__like-button');
-    const deleteCardButton = this._element.querySelector('.photo-grid__delete-button');
-    const viewPhotoButton = this._element.querySelector('.photo-grid__pic');
+    const buttonLikeCard = this._element.querySelector('.photo-grid__like-button');
+    const buttonDeleteCard = this._element.querySelector('.photo-grid__delete-button');
+    const buttonViewPhoto = this._element.querySelector('.photo-grid__pic');
 
-    likeCardButton.addEventListener('click', (evt) => {
-      evt.target.classList.toggle('photo-grid__like-button_active')
-    });
+    buttonLikeCard.addEventListener('click', this._likeCard);
 
-    deleteCardButton.addEventListener('click', () => {
-      this._element.remove();
+    buttonDeleteCard.addEventListener('click', () => {
+      this._deleteCard();
     })
 
-    viewPhotoButton.addEventListener('click', () => {
+    buttonViewPhoto.addEventListener('click', () => {
       this._openViewPhotoPopup();
     })
   }
 
+  _likeCard(evt) {
+    evt.target.classList.toggle('photo-grid__like-button_active');
+  }
+
+  _deleteCard() {
+    this._element.remove();
+  }
+
   _openViewPhotoPopup() {
-    viewPhotoPopup.querySelector('.popup__photo-pic').src = this._image;
-    viewPhotoPopup.querySelector('.popup__photo-pic').alt = this._image;
-    viewPhotoPopup.querySelector('.popup__photo-caption').textContent = this._text;
-    openPopup(viewPhotoPopup);
+    const viewPhotoPopupPic = popupViewPhoto.querySelector('.popup__photo-pic');
+    viewPhotoPopupPic.src = this._image;
+    viewPhotoPopupPic.alt = this._text;
+    popupViewPhoto.querySelector('.popup__photo-caption').textContent = this._text;
+    openPopup(popupViewPhoto);
   }
 
 }
