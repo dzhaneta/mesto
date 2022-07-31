@@ -1,11 +1,10 @@
-import { popupViewPhoto, openPopup } from './popups.js';
-
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor({ data, handleCardClick }, cardSelector) {
     this._text = data.name;
     this._image = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -21,14 +20,15 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
+    this._cardName = this._element.querySelector('.photo-grid__pic-title');
+    this._cardImage = this._element.querySelector('.photo-grid__pic');
+
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._text;
+    this._cardName.textContent = this._text;
+
     this._setEventListeners();
-
-    const newCardPic = this._element.querySelector('.photo-grid__pic');
-    newCardPic.src = this._image;
-    newCardPic.alt = this._text;
-    this._element.querySelector('.photo-grid__pic-title').textContent = this._text;
-
-
     return this._element;
   }
 
@@ -44,7 +44,7 @@ export class Card {
     })
 
     buttonViewPhoto.addEventListener('click', () => {
-      this._openViewPhotoPopup();
+      this._handleCardClick(this._cardName, this._cardImage);
     })
   }
 
@@ -54,13 +54,5 @@ export class Card {
 
   _deleteCard() {
     this._element.remove();
-  }
-
-  _openViewPhotoPopup() {
-    const viewPhotoPopupPic = popupViewPhoto.querySelector('.popup__photo-pic');
-    viewPhotoPopupPic.src = this._image;
-    viewPhotoPopupPic.alt = this._text;
-    popupViewPhoto.querySelector('.popup__photo-caption').textContent = this._text;
-    openPopup(popupViewPhoto);
   }
 }
