@@ -46,6 +46,7 @@ export class FormValidator {
   // SUBMIT BUTTON AVAILABILITY
 
   _toggleButtonState = (inputList, buttonElement) => {
+
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.setAttribute("disabled", true);
@@ -72,10 +73,11 @@ export class FormValidator {
     this._setEventListeners();
   };
 
-  disableButtonIfNeeded() {
-    if (!this._buttonElement.classList.contains(this._inactiveButtonClass)) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", true);
-    }
-  }
+  resetValidation() {
+    this._toggleButtonState(this._inputList, this._buttonElement);
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  };
 }

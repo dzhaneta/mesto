@@ -1,32 +1,20 @@
 import './index.css';
+import {
+  gallerySection,
+  buttonEditProfile,
+  formProfile,
+  buttonAddCard,
+  formAddCard,
+  formSettings
+} from '../utils/constants.js';
 import Section from '../components/Section.js';
-import { initialCards } from '../components/initialCards.js';
+import { initialCards } from '../utils/initialCards.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
-// CONSTANTS
-
-const cardsGallery = document.querySelector('.photo-grid');
-const gallerySection = '.photo-grid';
-
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-const formProfile = document.querySelector('.form_type_edit-profile');
-window.buttonEditProfile = buttonEditProfile;
-
-const buttonAddCard = document.querySelector('.profile__add-button');
-const formAddCard = document.querySelector('.form_type_add-card');
-
-const formSettings = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__save-button',
-  inactiveButtonClass: 'form__save-button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error_visible'
-};
 
 // ALL FORMS VALIDATION
 const formValidators = {};
@@ -55,18 +43,14 @@ const profilePopup = new PopupWithForm({
 
 profilePopup.setEventListeners();
 
-function profileFormOpenHandler() {
+function openProfilePopupHandler() {
   const currentProfileInfo = profileInfo.getUserInfo();
-  profilePopup.name = profilePopup.getFormElement().querySelector('.form__input_type_username');
-  profilePopup.about = profilePopup.getFormElement().querySelector('.form__input_type_userabout');
-
-  profilePopup.name.value = currentProfileInfo.name;
-  profilePopup.about.value = currentProfileInfo.about;
-  formValidators[formProfile.name].disableButtonIfNeeded();
+  profilePopup.setInputValues(currentProfileInfo);
+  formValidators[formProfile.name].resetValidation();
   profilePopup.open();
 }
 
-buttonEditProfile.addEventListener('click', profileFormOpenHandler);
+buttonEditProfile.addEventListener('click', openProfilePopupHandler);
 
 // ADD-CARD POPUP
 
@@ -79,39 +63,24 @@ const cardAddPopup = new PopupWithForm({
       link: inputValues['card-link'],
     };
 
-    renderCard(addCardInput);
+    galleryList.addItem(addCardInput);
     cardAddPopup.close();
   }
 });
 
 cardAddPopup.setEventListeners();
 
-function cardAddPopupOpenHandler() {
-  formAddCard.reset();
-  formValidators[formAddCard.name].disableButtonIfNeeded();
+function openAddCardPopupHandler() {
+  formValidators[formAddCard.name].resetValidation();
   cardAddPopup.open();
 }
 
-buttonAddCard.addEventListener('click', cardAddPopupOpenHandler);
+buttonAddCard.addEventListener('click', openAddCardPopupHandler);
 
 // VIEW-PHOTO POPUP
 
 const viewPhotoPopup = new PopupWithImage('.popup_type_view-photo');
 viewPhotoPopup.setEventListeners();
-
-// FUNCTIONS
-// Функция добавления новой карточки в секцию
-function renderCard(inputInfo) {
-  const card = new Card({
-    data: inputInfo,
-    handleCardClick: (cardName, cardImage) => {
-      viewPhotoPopup.open(cardName, cardImage);
-    }
-  }, '#card');
-  const cardElement = card.generateCard();
-
-  cardsGallery.prepend(cardElement);
-}
 
 // GALLERY SECTION RENDERING
 
@@ -124,10 +93,8 @@ const galleryList = new Section({
         viewPhotoPopup.open(cardName, cardImage);
       }
     }, '#card');
-
     const cardElement = card.generateCard();
-
-    galleryList.addItem(cardElement);
+    return cardElement;
     },
   },
   gallerySection
