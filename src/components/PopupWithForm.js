@@ -42,12 +42,10 @@ export default class PopupWithForm extends Popup {
   }
 
   showLoader(boolean, message) {
-    let defaultMessage = this._submitButton.textContent;
-    let newMessage = message;
     if (boolean) {
-      this._submitButton.textContent = newMessage;
+      this._submitButton.textContent = message;
     } else {
-      this._submitButton.textContent = defaultMessage;
+      this._submitButton.textContent = message;
     }
   }
 }

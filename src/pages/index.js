@@ -52,10 +52,10 @@ const profileInfo = new UserInfo({
 const profilePopup = new PopupWithForm({
   popupSelector: '.popup_type_edit-profile',
   formSubmitHandler: (inputValues) => {
-    profilePopup.showLoader(true, 'Сохранение...'); // прописать загрузчик надо
+    profilePopup.showLoader(true, 'Сохранение...');
     api.saveProfile(inputValues.name, inputValues.about)
     .then(() =>  profileInfo.setUserInfo(inputValues))
-    .finally(() => profilePopup.showLoader(false)); // и тут тоже
+    .finally(() => profilePopup.showLoader(false, 'Сохранить'));
     profilePopup.close();
   }
 });
@@ -76,6 +76,7 @@ buttonEditProfile.addEventListener('click', openProfilePopupHandler);
 const avatarEditPopup = new PopupWithForm({
   popupSelector: '.popup_type_edit-avatar',
   formSubmitHandler: (inputValues) => {
+    avatarEditPopup.showLoader(true, 'Сохранение...');
 
     const avatarEditInput = {
       link: inputValues['avatar']
@@ -83,7 +84,8 @@ const avatarEditPopup = new PopupWithForm({
 
     api.saveAvatar(avatarEditInput.link)
     .then(() =>  profileInfo.setUserInfo(inputValues))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .finally(() => cardAddPopup.showLoader(false, 'Сохранить'));
     avatarEditPopup.close();
   }
 });
@@ -102,6 +104,7 @@ buttonEditAvatar.addEventListener('click', openEditAvatarPopupHandler);
 const cardAddPopup = new PopupWithForm({
   popupSelector: '.popup_type_add-card',
   formSubmitHandler: (inputValues) => {
+    cardAddPopup.showLoader(true, 'Сохранение...');
 
     const addCardInput = {
       name: inputValues['card-title'],
@@ -109,8 +112,10 @@ const cardAddPopup = new PopupWithForm({
     };
 
 
-    galleryList.addItem(addCardInput);
-    api.saveCard(addCardInput.name, addCardInput.link);
+    api.saveCard(addCardInput.name, addCardInput.link)
+    .then((res) => galleryList.addItem(res))
+    .catch((err) => console.log(err))
+    .finally(() => cardAddPopup.showLoader(false, 'Создать'));
     cardAddPopup.close();
   }
 });
@@ -127,13 +132,10 @@ buttonAddCard.addEventListener('click', openAddCardPopupHandler);
 // DELETE-CARD POPUP
 
 const cardDeletePopup = new PopupWithConfirmation({
-  popupSelector: '.popup_type_delete-card',
-  ConfirmHandler: (cardId) => {
-    api.deleteCard(cardId)
-    .then(() => cardDeletePopup.close())
-    .catch((err) => console.log(err))
-  }
+  popupSelector: '.popup_type_delete-card'
 });
+
+cardDeletePopup.setEventListeners();
 
 // VIEW-PHOTO POPUP
 
@@ -163,8 +165,14 @@ const galleryList = new Section({
           .catch((error) => console.log(error));
       },
 
-      handleDeleteCard: cardId => {
-        cardDeletePopup(cardId);
+      handleDeleteCard: card => {
+        cardDeletePopup.open();
+        cardDeletePopup.setSubmitAction(() => {
+          api.deleteCard(card._cardId)
+          .then(() => card.removeCard())
+          .then(() => cardDeletePopup.close())
+          .catch((err) => console.log(err))
+        });
       }
     }, '#card');
     const cardElement = card.generateCard();

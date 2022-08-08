@@ -19,7 +19,7 @@ const formProfile = document.querySelector('.form_type_edit-profile');
 const buttonAddCard = document.querySelector('.profile__add-button');
 const formAddCard = document.querySelector('.form_type_add-card');
 
-const buttonEditAvatar = document.querySelector('.profile__avatar');
+const buttonEditAvatar = document.querySelector('.profile__avatar-container');
 const formEditAvatar = document.querySelector('.form_type_edit-avatar');
 
 const formSettings = {

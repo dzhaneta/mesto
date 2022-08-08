@@ -28,12 +28,12 @@ export class Card {
 
   // Remove Delete Button or Add Listener
 
-  _deleteCard() {
+  _toggleDeleteButton() {
     if (this._owner !== this._user) {
       this._deleteCardButton.remove();
     } else {
       this._deleteCardButton.addEventListener('click', () => {
-        this._handleDeleteCard(this._cardId, this._element);
+        this._handleDeleteCard(this);
       });
     }
   }
@@ -81,7 +81,7 @@ export class Card {
       this._toggleLikes(evt.currentTarget);
     });
 
-    this._deleteCard();
+    this._toggleDeleteButton();
 
     buttonViewPhoto.addEventListener('click', () => {
       this._handleCardClick(this._cardName, this._cardImage);
@@ -89,6 +89,10 @@ export class Card {
   }
 
   getElement() {
-    return this._card
+    return this._element;
+  }
+
+  removeCard() {
+    this.getElement().remove();
   }
 }
