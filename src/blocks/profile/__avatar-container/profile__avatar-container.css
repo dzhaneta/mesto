@@ -11,7 +11,7 @@
   height: 100%;
 
   background-image: url(../../../images/pen-icon.svg);
-  background-color: transparent;
+  background-color: rgba(0,0,0,.8);
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -25,12 +25,3 @@
   opacity: 1;
 }
 
-.profile__avatar-container::before {
-  background-color: #000;
-  opacity: 0;
-  z-index: 0;
-}
-
-.profile__avatar-container:hover::before {
-  opacity: 0.8;
-}
