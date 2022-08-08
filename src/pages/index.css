@@ -22,6 +22,8 @@
 @import url(../blocks/photo-grid/__delete-button/photo-grid__delete-button.css);
 @import url(../blocks/photo-grid/__like-button/photo-grid__like-button.css);
 @import url(../blocks/photo-grid/__like-button/_active/photo-grid__like-button_active.css);
+@import url(../blocks/photo-grid/__like-container/photo-grid__like-container.css);
+@import url(../blocks/photo-grid/__pic-likes/photo-grid__pic-likes.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
@@ -44,7 +46,6 @@
 @import url(../blocks/form/__error/form__error_visible.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
 @import url(../blocks/form/__save-button/_disabled/form__save-button_disabled.css);
-
 
 
 

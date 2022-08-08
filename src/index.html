@@ -20,8 +20,8 @@
       <section class="profile">
         <img class="profile__avatar" src="<%=require('./images/avatar_image.jpg')%>" alt="фото профиля">
         <div class="profile__info">
-          <h1 class="profile__name">Алекс Сатори</h1>
-          <p class="profile__bio">Искатель приключений</p>
+          <h1 class="profile__name"></h1>
+          <p class="profile__bio"></p>
           <button class="profile__edit-button hover-opacity" type="button"></button>
         </div>
         <button class="profile__add-button hover-opacity" type="button"></button>
@@ -46,12 +46,28 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__input-container">
             <label class="form__field">
-              <input id="username" class="form__input form__input_type_username" type="text" name="username" value placeholder="Имя" minlength="2" maxlength="40" required>
+              <input id="username" class="form__input form__input_type_username" type="text" name="name" value placeholder="Имя" minlength="2" maxlength="40" required>
               <span class="form__input-error username-error"></span>
             </label>
             <label class="form__field">
-              <input id="userabout" class="form__input form__input_type_userabout" type="text" name="userabout" value placeholder="О себе" minlength="2" maxlength="200" required>
+              <input id="userabout" class="form__input form__input_type_userabout" type="text" name="about" value placeholder="О себе" minlength="2" maxlength="200" required>
               <span class="form__input-error userabout-error"></span>
+            </label>
+          </fieldset>
+          <button class="form__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <button class="popup__close-button hover-opacity" type="button"></button>
+        <form class="form form_type_edit-avatar" name="edit-avatar-form" novalidate>
+          <h2 class="form__title">Обновить аватар</h2>
+          <fieldset class="form__input-container">
+            <label class="form__field">
+              <input id="avatarlink" class="form__input form__input_type_avatarlink" type="url" name="avatar" value placeholder="Ссылка на картинку" required>
+              <span class="form__input-error avatarlink-error"></span>
             </label>
           </fieldset>
           <button class="form__save-button" type="submit">Сохранить</button>
@@ -79,6 +95,18 @@
       </div>
     </div>
 
+    <div class="popup popup_type_delete-card">
+      <div class="popup__container">
+        <button class="popup__close-button hover-opacity" type="button"></button>
+        <form class="form form_type_delete-card" name="delete-card-form" novalidate>
+          <h2 class="form__title">Вы уверены?</h2>
+          <button class="form__save-button" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+
+
     <div class="popup popup_type_view-photo">
       <div class="popup__photo-container">
         <button class="popup__close-button hover-opacity" type="button"></button>
@@ -96,7 +124,10 @@
           <img class="photo-grid__pic" src="data:," alt="">
           <div class="photo-grid__pic-info">
             <h2 class="photo-grid__pic-title"></h2>
-            <button class="photo-grid__like-button" type="button" aria-label="Нравится"></button>
+            <div class="photo-grid__like-container">
+              <button class="photo-grid__like-button" type="button" aria-label="Нравится"></button>
+              <p class="photo-grid__pic-likes">0</p>
+            </div>
           </div>
        </div>
       </li>
