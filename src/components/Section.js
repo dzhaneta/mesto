@@ -6,6 +6,7 @@ export default class Section {
   }
 
   renderItems(items) {
+    items.reverse();
     items.forEach(item => this.addItem(item));
   }
 

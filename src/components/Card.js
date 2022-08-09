@@ -39,7 +39,7 @@ export class Card {
   }
 
   _toggleLikes(likeButton) {
-    let handleLike = likeButton.classList.contains('photo-grid__like-button_active') ? this._handleRemoveLike : this._handleAddLike;
+    const handleLike = likeButton.classList.contains('photo-grid__like-button_active') ? this._handleRemoveLike : this._handleAddLike;
     handleLike(this._cardId);
   }
 

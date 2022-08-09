@@ -54,9 +54,12 @@ const profilePopup = new PopupWithForm({
   formSubmitHandler: (inputValues) => {
     profilePopup.showLoader(true, 'Сохранение...');
     api.saveProfile(inputValues.name, inputValues.about)
-    .then(() =>  profileInfo.setUserInfo(inputValues))
+    .then(() => {
+      profileInfo.setUserInfo(inputValues);
+      profilePopup.close();
+    })
+    .catch((err) => console.log(err))
     .finally(() => profilePopup.showLoader(false, 'Сохранить'));
-    profilePopup.close();
   }
 });
 
@@ -83,10 +86,12 @@ const avatarEditPopup = new PopupWithForm({
     };
 
     api.saveAvatar(avatarEditInput.link)
-    .then(() =>  profileInfo.setUserInfo(inputValues))
+    .then(() => {
+      profileInfo.setUserInfo(inputValues);
+      avatarEditPopup.close();
+    })
     .catch((err) => console.log(err))
     .finally(() => cardAddPopup.showLoader(false, 'Сохранить'));
-    avatarEditPopup.close();
   }
 });
 
@@ -113,10 +118,12 @@ const cardAddPopup = new PopupWithForm({
 
 
     api.saveCard(addCardInput.name, addCardInput.link)
-    .then((res) => galleryList.addItem(res))
+    .then((res) => {
+      galleryList.addItem(res);
+      cardAddPopup.close();
+    })
     .catch((err) => console.log(err))
     .finally(() => cardAddPopup.showLoader(false, 'Создать'));
-    cardAddPopup.close();
   }
 });
 
@@ -144,13 +151,11 @@ viewPhotoPopup.setEventListeners();
 
 // RENDERING
 
-
-
 const galleryList = new Section({
   renderer: (initialCardItem) => {
     const card = new Card({
       data: initialCardItem,
-      user: profileID,
+      user: profileInfo.getUserId(),
       handleCardClick: (cardName, cardImage) => viewPhotoPopup.open(cardName, cardImage),
 
       handleAddLike: cardId => {
@@ -169,8 +174,10 @@ const galleryList = new Section({
         cardDeletePopup.open();
         cardDeletePopup.setSubmitAction(() => {
           api.deleteCard(card._cardId)
-          .then(() => card.removeCard())
-          .then(() => cardDeletePopup.close())
+          .then(() => {
+            card.removeCard();
+            cardDeletePopup.close();
+          })
           .catch((err) => console.log(err))
         });
       }
@@ -182,12 +189,9 @@ const galleryList = new Section({
   gallerySection
 );
 
-let profileID;
 
 Promise.all([api.getProfile(), api.getCards()])
   .then(([profile, cards]) => {
-
-    profileID = profile._id;
 
     profileInfo.setUserInfo(profile);
 

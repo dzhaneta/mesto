@@ -22,6 +22,12 @@ export default class UserInfo {
     if (inputValues['about']) {
       this._profileAbout.textContent = inputValues['about'];
     }
+
+    this._profileID = inputValues._id;
+  }
+
+  getUserId() {
+    return this._profileID;
   }
 
 }
