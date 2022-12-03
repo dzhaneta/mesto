@@ -1,2 +1,5 @@
-node_modules
+.DC_Store
 dist
+node_modules
+
+
